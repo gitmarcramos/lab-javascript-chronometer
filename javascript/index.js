@@ -20,7 +20,7 @@ function printTime() {
 function printMinutes() {}
 
 function printSeconds() {
-  setInterval(secUniElement.textContent = chronometer.getSeconds(), 10)
+  secUniElement.textContent = chronometer.getSeconds()
 }
 
 // ==> BONUS
@@ -58,12 +58,14 @@ function setResetBtn() {
 
 // Start/Stop Button
 btnLeftElement.addEventListener('click', () => {
-  chronometer.start();
-  printSeconds();
+
 
   if (btnLeftElement.classList.contains('start')) {
     setStopBtn();
     setSplitBtn();
+    chronometer.start();
+    setInterval(printSeconds,100);
+
   } else if (btnLeftElement.classList.contains('stop')) {
     setStartBtn();
     setResetBtn();
