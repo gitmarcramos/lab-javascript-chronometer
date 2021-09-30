@@ -20,25 +20,15 @@ function printTime() {
 }
 
 function printMinutes() {
-  // const minIntervals = function () {
-  //   setInterval(printMinutes, 100);
-  // };
-
   let beautyTime = chronometer.split();
-  console.log(beautyTime);
   minDecElement.textContent = beautyTime[0];
   minUniElement.textContent = beautyTime[1];
-
 }
 
 function printSeconds() {
-  // const secondsInterval = function () {
-  //   setInterval(printSeconds, 100);
-  // };
-
   let beautyTime = chronometer.split();
-  secUniElement.textContent = beautyTime[beautyTime.length -1];
-  secDecElement.textContent = beautyTime[beautyTime.length -2];
+  secUniElement.textContent = beautyTime[beautyTime.length - 1];
+  secDecElement.textContent = beautyTime[beautyTime.length - 2];
 }
 
 // ==> BONUS
@@ -47,7 +37,9 @@ function printMilliseconds() {
 }
 
 function printSplit() {
-  // ... your code goes here
+  const liSplit = document.createElement('li');
+  splitsElement.appendChild(liSplit);
+  liSplit.textContent = chronometer.split();
 }
 
 function clearSplits() {
@@ -76,6 +68,13 @@ function setResetBtn() {
   btnRightElement.classList.replace('split', 'reset');
   btnRightElement.textContent = 'RESET';
   clearInterval(intervalId);
+
+  // const allSplits = document.querySelectorAll('li');
+  // console.log(allSplits);
+
+  // for (let i = 0; i < allSplits.length; i++) {
+  //   splitsElement.removeChild(allSplits[i]);
+  // }
 }
 
 // Start/Stop Button
@@ -98,5 +97,15 @@ btnRightElement.addEventListener('click', () => {
   console.log('click');
   if (btnRightElement.classList.contains('reset')) {
     chronometer.reset();
+    /////
+    const allSplits = document.querySelectorAll('li');
+    console.log(allSplits);
+  
+    for (let i = 0; i < allSplits.length; i++) {
+      splitsElement.removeChild(allSplits[i]);
+    }
+    //////
+  } else if (btnRightElement.classList.contains('split')) {
+    printSplit();
   }
 });
